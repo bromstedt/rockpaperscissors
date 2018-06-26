@@ -7,19 +7,47 @@
 
 <body>
   <script>
+    const playerSelection = prompt('Make your choice');
+    const computerSelection = computerPlay();
+
+    console.log(playRound(playerSelection, computerSelection));
+
+    function playRound(playerSelection, computerSelection){
+      let str = playerSelection.toLowerCase();
+      playerSelection = capitalize(str);
+
+      if(playerSelection === computerSelection) {
+        let result = 'Draw! ';
+        return result + playerSelection + ' vs. ' + computerSelection;
+      } else if(playerSelection === 'Rock' && computerSelection === 'Scissors' || playerSelection === 'Paper' &&
+                computerSelection === 'Rock' || playerSelection === 'Scissors' && computerSelection === 'Paper') {
+        result = 'You Win! ';
+        return result + playerSelection + ' beats ' + computerSelection;
+      } else {
+        result = 'You Lose! ';
+        return result + computerSelection + ' beats ' + playerSelection;
+      }
+      function capitalize(str) {
+        let str1 = str.toUpperCase();
+        let capital = str1.slice(0,1);
+        let str2 = str1.slice(1);
+        str2 = str2.toLowerCase();
+        return capital + str2;
+      }
+    }
 
     function computerPlay(){
       let random = Math.floor(Math.random() * 3);
 
       switch(true){
         case random === 2:
-        console.log('Scissors');
+        return 'Scissors';
         break;
         case random === 1:
-        console.log('Paper');
+        return 'Paper';
         break;
         default:
-        console.log('Rock');
+        return 'Rock';
       }
     }
 
