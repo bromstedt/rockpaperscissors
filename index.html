@@ -7,24 +7,55 @@
 
 <body>
   <script>
-    const playerSelection = prompt('Make your choice');
-    const computerSelection = computerPlay();
 
-    console.log(playRound(playerSelection, computerSelection));
+    let playerScore = 0;
+    let computerScore = 0;
+    let round = 1;
+
+    function game() {
+
+      do {
+        let playerSelection = prompt('Make your choice');
+        const computerSelection = computerPlay();
+        console.log('Round: ' + round);
+        console.log(playRound(playerSelection, computerSelection));
+      } while(round <= 5);
+      if(round > 5) {
+        console.log('Game Over');
+      }
+      if(playerScore === computerScore) {
+        let result = 'A Draw! ';
+      } else if(playerScore > computerScore) {
+        result = 'You Win! ';
+      } else {
+        result = 'You Lose!';
+      }
+      console.log(result + ' Player: ' + playerScore + ' - Computer: ' + computerScore);
+    }
+
+
 
     function playRound(playerSelection, computerSelection){
+      round++;
       let str = playerSelection.toLowerCase();
       playerSelection = capitalize(str);
 
+      /*if(playerSelection != 'Rock' || playerSelection != 'Paper' || playerSelection != 'Scissors' || playerSelection === null){
+        playerSelection = prompt('Something went wrong, choose again');
+      }*/
       if(playerSelection === computerSelection) {
         let result = 'Draw! ';
+        playerScore++;
+        computerScore++;
         return result + playerSelection + ' vs. ' + computerSelection;
       } else if(playerSelection === 'Rock' && computerSelection === 'Scissors' || playerSelection === 'Paper' &&
                 computerSelection === 'Rock' || playerSelection === 'Scissors' && computerSelection === 'Paper') {
         result = 'You Win! ';
+        playerScore++;
         return result + playerSelection + ' beats ' + computerSelection;
       } else {
         result = 'You Lose! ';
+        computerScore++;
         return result + computerSelection + ' beats ' + playerSelection;
       }
       function capitalize(str) {
