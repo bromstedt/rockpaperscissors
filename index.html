@@ -33,16 +33,11 @@
       console.log(result + ' Player: ' + playerScore + ' - Computer: ' + computerScore);
     }
 
-
-
     function playRound(playerSelection, computerSelection){
       round++;
       let str = playerSelection.toLowerCase();
       playerSelection = capitalize(str);
 
-      /*if(playerSelection != 'Rock' || playerSelection != 'Paper' || playerSelection != 'Scissors' || playerSelection === null){
-        playerSelection = prompt('Something went wrong, choose again');
-      }*/
       if(playerSelection === computerSelection) {
         let result = 'Draw! ';
         playerScore++;
